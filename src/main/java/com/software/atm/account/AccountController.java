@@ -2,8 +2,6 @@ package com.software.atm.account;
 
 
 import com.software.atm.common.PagingData;
-import com.software.atm.credit_card.Card;
-import com.software.atm.credit_card.CardDto;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -47,7 +45,6 @@ public class AccountController {
         List<Account> accounts=accountService.getAll();
         List<AccountDto>accountDtos=accountMapper.toDto(accounts);
         return ResponseEntity.ok(accountDtos);
-
     }
 
     @GetMapping("get-by-id/{id}")
@@ -57,7 +54,6 @@ public class AccountController {
         Account  account=accountService.getById(id);
         AccountDto accountDto=accountMapper.toDto(account);
         return ResponseEntity.ok(accountDto);
-
     }
 
     @DeleteMapping("delete-by-id/{id}")
@@ -66,7 +62,6 @@ public class AccountController {
 
         accountService.delete(id);
         return ResponseEntity.ok().build();
-
     }
 
 

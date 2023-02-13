@@ -15,7 +15,6 @@ import java.sql.Date;
 @Audited
 public class Card extends BaseEntity {
 
-
     @NotNull
     @Column(name = "card_number",length = 16)
     private String cardNumber;
@@ -32,7 +31,5 @@ public class Card extends BaseEntity {
     @NotNull
     @Column(name = "expire_time")
     private Date expireDate;
-
-
 
 }

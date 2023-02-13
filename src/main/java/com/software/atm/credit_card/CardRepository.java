@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
 @Repository
@@ -16,10 +15,10 @@ public interface CardRepository extends PagingAndSortingRepository<Card,Long> {
 
     Boolean existsCardById(Long id);
 
-    Boolean existsCardByCardNumber(@NotNull String s);
-    Boolean existsCardByPin(@NotNull String s);
-    Boolean existsCardByStatus(@NotNull Status s);
-    Boolean existsCardByExpireDate(@NotNull Date s);
+    Boolean existsCardByCardNumber( String s);
+    Boolean existsCardByPin( String s);
+    Boolean existsCardByStatus( Status s);
+    Boolean existsCardByExpireDate( Date s);
 
 
 }

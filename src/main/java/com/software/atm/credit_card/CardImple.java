@@ -20,12 +20,6 @@ public class CardImple implements CardService{
     @Override
     public Card save(Card card) {
 
-//        if((cardRepository.existsCardById(card.getId())
-//         &&  cardRepository.existsCardByStatus(card.getStatus()) && cardRepository.existsCardByCardNumber(card.getCardNumber())
-//        && cardRepository.existsCardByPin(card.getPin()) && cardRepository.existsCardByExpireDate(card.getExpireDate()))){
-//
-//            throw new ConflictException("Should not be null");
-//        }
         return cardRepository.save(card);
     }
 
@@ -42,7 +36,7 @@ public class CardImple implements CardService{
     @Override
     public void delete(Long id) {
 
-        if(!cardRepository.existsCardById(null))
+        if(cardRepository.existsCardById(id).equals(null))
         {
             throw new NotFound("Not found Id");
         }

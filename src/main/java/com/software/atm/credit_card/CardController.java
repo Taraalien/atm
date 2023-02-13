@@ -2,8 +2,6 @@ package com.software.atm.credit_card;
 
 
 import com.software.atm.common.PagingData;
-import com.software.atm.user.User;
-import com.software.atm.user.UserDto;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
