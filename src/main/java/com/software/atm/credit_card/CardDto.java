@@ -22,6 +22,9 @@ public class CardDto extends BaseDTO {
     @ApiModelProperty(required = true,hidden = false)
     private Date expireDate;
 
+    @ApiModelProperty(required = true,hidden = false)
+    private Long userId;
+
 ;
 
 }

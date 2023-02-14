@@ -2,6 +2,7 @@ package com.software.atm.credit_card;
 
 import com.software.atm.account.Account;
 import com.software.atm.common.BaseEntity;
+import com.software.atm.user.User;
 import lombok.Data;
 import org.hibernate.envers.Audited;
 
@@ -33,6 +34,9 @@ public class Card extends BaseEntity {
     @Column(name = "expire_time")
     private Date expireDate;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
 

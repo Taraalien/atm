@@ -2,6 +2,7 @@ package com.software.atm.user;
 
 import com.software.atm.account.Account;
 import com.software.atm.common.BaseEntity;
+import com.software.atm.credit_card.Card;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -66,6 +67,8 @@ public class User extends BaseEntity {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL)
     private List<Account> accountList;
 
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Card> cards;
 
 
 

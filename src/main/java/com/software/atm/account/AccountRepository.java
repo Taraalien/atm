@@ -2,6 +2,7 @@ package com.software.atm.account;
 
 
 import com.software.atm.bank.Bank;
+import com.software.atm.user.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -20,6 +21,5 @@ public interface AccountRepository extends PagingAndSortingRepository<Account,Lo
 
     List<Account>findByUserNationalCode(String s);
    Account findByAccountNumber(String s);
-
 
 }

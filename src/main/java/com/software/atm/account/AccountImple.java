@@ -29,12 +29,23 @@ public class AccountImple implements AccountService{
     @Override
     public Account save(Account account) {
 
+        var account1=(List<Account>)accountRepository.findAll();
+
+        for(Account account2:account1){
+
+            if(account2.getAccountNumber().equals(account.getAccountNumber()))
+            {
+                throw new ConflictException("duplicated account number");
+            }
+        }
+
         if(!(account.getAccountNumber().length()==10 ||
                 account.getAccountNumber().length()==15)){
 
-            throw new ConflictException("format not correct.");
+            throw new ConflictException("account number format not correct.");
 
         }
+
         Long bankId=account.getBank().getId();
         Bank bank=bankService.getById(bankId);
         account.setBank(bank);
@@ -112,4 +123,6 @@ public class AccountImple implements AccountService{
     public Account getByAccountNumber(String s) {
         return accountRepository.findByAccountNumber(s);
     }
+
+
 }

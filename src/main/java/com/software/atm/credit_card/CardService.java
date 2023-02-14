@@ -20,5 +20,7 @@ public interface CardService {
 
     List<Card> getAll();
 
+    List<Card> getByUser(Long id);
+
 
 }

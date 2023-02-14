@@ -78,5 +78,14 @@ public class CardController {
         return ResponseEntity.ok(pagingData);
     }
 
+    @GetMapping("/get-by-user-id/{userId}")
+    @Operation(summary = "get by  user id")
+    public ResponseEntity<List<CardDto>>getByUserId(@PathVariable Long userId)
+    {
+        List<Card> card=cardService.getByUser(userId);
+        List<CardDto>cardDtos=cardMapper.toDto(card);
+        return ResponseEntity.ok(cardDtos);
+
+    }
 
 }

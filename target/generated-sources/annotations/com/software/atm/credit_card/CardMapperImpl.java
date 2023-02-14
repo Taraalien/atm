@@ -1,5 +1,6 @@
 package com.software.atm.credit_card;
 
+import com.software.atm.user.User;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-14T11:36:39+0330",
+    date = "2023-02-14T16:12:36+0330",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 19.0.1 (Oracle Corporation)"
 )
 @Component
@@ -49,6 +50,7 @@ public class CardMapperImpl implements CardMapper {
 
         Card card = new Card();
 
+        card.setUser( cardDtoToUser( dto ) );
         card.setId( dto.getId() );
         card.setVersion( dto.getVersion() );
         card.setCreatedBy( dto.getCreatedBy() );
@@ -71,6 +73,7 @@ public class CardMapperImpl implements CardMapper {
 
         CardDto cardDto = new CardDto();
 
+        cardDto.setUserId( cardUserId( card ) );
         cardDto.setId( card.getId() );
         cardDto.setVersion( card.getVersion() );
         cardDto.setCreatedBy( card.getCreatedBy() );
@@ -83,5 +86,32 @@ public class CardMapperImpl implements CardMapper {
         cardDto.setExpireDate( card.getExpireDate() );
 
         return cardDto;
+    }
+
+    protected User cardDtoToUser(CardDto cardDto) {
+        if ( cardDto == null ) {
+            return null;
+        }
+
+        User user = new User();
+
+        user.setId( cardDto.getUserId() );
+
+        return user;
+    }
+
+    private Long cardUserId(Card card) {
+        if ( card == null ) {
+            return null;
+        }
+        User user = card.getUser();
+        if ( user == null ) {
+            return null;
+        }
+        Long id = user.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
     }
 }

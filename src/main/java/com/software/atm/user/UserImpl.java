@@ -25,6 +25,16 @@ public class UserImpl implements UserService {
     @Override
     public User save(User user) {
 
+        var user1=(List<User>)repo.findAll();
+
+        for(User user2:user1){
+
+            if(user2.getPhone().equals(user.getPhone()))
+            {
+                throw new ConflictException("duplicated phone number");
+            }
+        }
+
         if(!user.getNationalCode().matches("^[0-9]{10}$")){
 
             throw new ConflictException("national code is not valid");
@@ -70,6 +80,9 @@ public class UserImpl implements UserService {
         repo.deleteById(id);
 
     }
+
+
+
     @Transactional
     @Override
     public List<User> getAll() {

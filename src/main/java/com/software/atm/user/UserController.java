@@ -67,6 +67,9 @@ public class UserController {
     }
 
 
+
+
+
     @GetMapping("/is-married/")
     @Operation(summary = "get married user")
     public ResponseEntity<List<UserDto>>IsMarried()
