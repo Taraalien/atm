@@ -1,5 +1,6 @@
 package com.software.atm.user;
 
+import com.software.atm.account.Account;
 import com.software.atm.common.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,15 +12,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
+import java.util.List;
 
 
 @Data
-@Builder
 @Table(name = "user_tbl")
 @Entity
 @Audited
-@NoArgsConstructor
-@AllArgsConstructor
 public class User extends BaseEntity {
 
     @Id
@@ -63,6 +62,9 @@ public class User extends BaseEntity {
     @NotNull
     @Column(name = "address")
     private String address;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Account> accountList;
 
 
 

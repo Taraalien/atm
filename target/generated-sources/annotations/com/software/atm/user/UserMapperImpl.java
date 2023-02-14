@@ -1,6 +1,5 @@
 package com.software.atm.user;
 
-import com.software.atm.user.User.UserBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -8,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-13T07:44:03+0330",
+    date = "2023-02-14T11:36:39+0330",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 19.0.1 (Oracle Corporation)"
 )
 @Component
@@ -48,19 +47,24 @@ public class UserMapperImpl implements UserMapper {
             return null;
         }
 
-        UserBuilder user = User.builder();
+        User user = new User();
 
-        user.id( userDto.getId() );
-        user.name( userDto.getName() );
-        user.lastName( userDto.getLastName() );
-        user.birthDay( userDto.getBirthDay() );
-        user.phone( userDto.getPhone() );
-        user.nationalCode( userDto.getNationalCode() );
-        user.job( userDto.getJob() );
-        user.isMarried( userDto.getIsMarried() );
-        user.address( userDto.getAddress() );
+        user.setVersion( userDto.getVersion() );
+        user.setCreatedBy( userDto.getCreatedBy() );
+        user.setCreatedDate( userDto.getCreatedDate() );
+        user.setLastModifiedBy( userDto.getLastModifiedBy() );
+        user.setLastModifiedDate( userDto.getLastModifiedDate() );
+        user.setId( userDto.getId() );
+        user.setName( userDto.getName() );
+        user.setLastName( userDto.getLastName() );
+        user.setBirthDay( userDto.getBirthDay() );
+        user.setPhone( userDto.getPhone() );
+        user.setNationalCode( userDto.getNationalCode() );
+        user.setJob( userDto.getJob() );
+        user.setIsMarried( userDto.getIsMarried() );
+        user.setAddress( userDto.getAddress() );
 
-        return user.build();
+        return user;
     }
 
     @Override

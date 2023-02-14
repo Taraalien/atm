@@ -1,5 +1,8 @@
 package com.software.atm.credit_card;
 
+import com.software.atm.account.Account;
+import com.software.atm.account.AccountService;
+import com.software.atm.common.exceptions.ConflictException;
 import com.software.atm.common.exceptions.NotFound;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,9 +19,21 @@ import java.util.Optional;
 public class CardImple implements CardService{
 
     private final CardRepository cardRepository;
+    private final AccountService accountService;
 
     @Override
     public Card save(Card card) {
+
+        var card1=(List<Card>)cardRepository.findAll();
+
+        for(Card card2 : card1){
+
+            if (card2.getCardNumber().equals(card.getCardNumber())){
+
+                throw new ConflictException("duplicated card number");
+            }
+
+        }
 
         return cardRepository.save(card);
     }
@@ -36,10 +51,6 @@ public class CardImple implements CardService{
     @Override
     public void delete(Long id) {
 
-        if(cardRepository.existsCardById(id).equals(null))
-        {
-            throw new NotFound("Not found Id");
-        }
         cardRepository.deleteById(id);
 
     }
@@ -62,4 +73,6 @@ public class CardImple implements CardService{
     public List<Card> getAll() {
         return (List<Card>) cardRepository.findAll();
     }
+
+
 }

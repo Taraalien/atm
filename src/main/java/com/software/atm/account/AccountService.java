@@ -19,4 +19,11 @@ public interface AccountService  {
 
 
     List<Account> getAll();
+
+    List<Account>getByBank(Long id);
+
+    List<Account> getByBankCode(Long code);
+
+    List<Account> getByUserNationalCode(String s);
+     Account getByAccountNumber(String s);
 }

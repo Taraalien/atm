@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-13T08:26:34+0330",
+    date = "2023-02-14T11:36:39+0330",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 19.0.1 (Oracle Corporation)"
 )
 @Component
@@ -49,9 +49,16 @@ public class CardMapperImpl implements CardMapper {
 
         Card card = new Card();
 
+        card.setId( dto.getId() );
+        card.setVersion( dto.getVersion() );
+        card.setCreatedBy( dto.getCreatedBy() );
+        card.setCreatedDate( dto.getCreatedDate() );
+        card.setLastModifiedBy( dto.getLastModifiedBy() );
+        card.setLastModifiedDate( dto.getLastModifiedDate() );
         card.setCardNumber( dto.getCardNumber() );
         card.setPin( dto.getPin() );
         card.setStatus( dto.getStatus() );
+        card.setExpireDate( dto.getExpireDate() );
 
         return card;
     }
@@ -64,9 +71,16 @@ public class CardMapperImpl implements CardMapper {
 
         CardDto cardDto = new CardDto();
 
+        cardDto.setId( card.getId() );
+        cardDto.setVersion( card.getVersion() );
+        cardDto.setCreatedBy( card.getCreatedBy() );
+        cardDto.setCreatedDate( card.getCreatedDate() );
+        cardDto.setLastModifiedBy( card.getLastModifiedBy() );
+        cardDto.setLastModifiedDate( card.getLastModifiedDate() );
         cardDto.setCardNumber( card.getCardNumber() );
         cardDto.setPin( card.getPin() );
         cardDto.setStatus( card.getStatus() );
+        cardDto.setExpireDate( card.getExpireDate() );
 
         return cardDto;
     }

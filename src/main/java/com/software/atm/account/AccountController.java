@@ -75,4 +75,41 @@ public class AccountController {
         PagingData<AccountDto> pagingData=new PagingData<>(totalPage,page,accountDtos);
         return ResponseEntity.ok(pagingData);
     }
+
+    @GetMapping("get-by-bank-id/{bankId}")
+    @Operation(summary = "get by id ")
+    public ResponseEntity<List<AccountDto>>getByBankId(@PathVariable Long bankId)
+    {
+        List<Account>  account=accountService.getByBank(bankId);
+        List<AccountDto> accountDto=accountMapper.toDto(account);
+        return ResponseEntity.ok(accountDto);
+    }
+
+
+    @GetMapping("get-by-code/{code}")
+    @Operation(summary = "get by bank code ")
+    public ResponseEntity<List<AccountDto>>getByBankCode(@PathVariable Long code)
+    {
+        List<Account> account=accountService.getByBankCode(code);
+        List<AccountDto> accountDto=accountMapper.toDto(account);
+        return ResponseEntity.ok(accountDto);
+    }
+
+    @GetMapping("get-by-national-code/{nationalCode}")
+    @Operation(summary = "get by bank code ")
+    public ResponseEntity<List<AccountDto>>getByNationalCode(@PathVariable String nationalCode)
+    {
+        List<Account> account=accountService.getByUserNationalCode(nationalCode);
+        List<AccountDto> accountDto=accountMapper.toDto(account);
+        return ResponseEntity.ok(accountDto);
+    }
+
+    @GetMapping("get-by-account-number/{accountNumber}")
+    @Operation(summary = "get by id ")
+    public ResponseEntity<AccountDto>getById(@PathVariable String accountNumber)
+    {
+        Account  account=accountService.getByAccountNumber(accountNumber);
+        AccountDto accountDto=accountMapper.toDto(account);
+        return ResponseEntity.ok(accountDto);
+    }
 }

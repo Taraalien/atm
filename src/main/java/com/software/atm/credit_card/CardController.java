@@ -77,4 +77,6 @@ public class CardController {
         PagingData<CardDto> pagingData=new PagingData<>(totalPage,page,cardDtos);
         return ResponseEntity.ok(pagingData);
     }
+
+
 }
