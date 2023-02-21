@@ -2,7 +2,6 @@ package com.software.atm.credit_card;
 
 import org.springframework.data.domain.Page;
 
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -32,7 +31,11 @@ public interface CardService {
 
     Card changePassword(String cardNumber,String pin);
 
+    BigDecimal withdrawal(String cardNumber,BigDecimal amount);
 
+    BigDecimal deposit(String cardNumber, BigDecimal amount);
+
+    Card getByCardNumber(String  cardNum);
 
 
 

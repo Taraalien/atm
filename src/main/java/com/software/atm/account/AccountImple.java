@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -121,6 +122,31 @@ public class AccountImple implements AccountService{
     @Override
     public Account getByAccountNumber(String s) {
         return accountRepository.findByAccountNumber(s);
+    }
+
+    @Override
+    public BigDecimal withdrawal(Long accountId, BigDecimal balance) {
+        Account account=getById(accountId);
+        if(account.getBalance().compareTo(balance)==-1){
+
+            throw new ConflictException("amount you want is more than your balance");
+        }
+        account.setBalance(account.getBalance().subtract(balance));
+
+        Account newBalance=accountRepository.save(account);
+        return newBalance.getBalance();
+    }
+
+
+    @Override
+    public BigDecimal deposit(Long accountId, BigDecimal balance) {
+
+        Account account=getById(accountId);
+
+        account.setBalance(account.getBalance().add(balance));
+
+        Account newBalance=accountRepository.save(account);
+        return newBalance.getBalance();
     }
 
 

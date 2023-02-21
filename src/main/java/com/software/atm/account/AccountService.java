@@ -2,6 +2,7 @@ package com.software.atm.account;
 
 import org.springframework.data.domain.Page;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface AccountService  {
@@ -27,5 +28,7 @@ public interface AccountService  {
     List<Account> getByUserNationalCode(String s);
     Account getByAccountNumber(String s);
 
+    BigDecimal withdrawal(Long accountId,BigDecimal balance);
+    BigDecimal deposit(Long accountId, BigDecimal balance);
 
 }

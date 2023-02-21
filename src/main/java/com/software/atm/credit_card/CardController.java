@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static com.software.atm.credit_card.Status.ACTIVE;
-
 @RequestMapping("/v1/card")
 @RestController
 @AllArgsConstructor
@@ -148,6 +146,19 @@ public class CardController {
         return ResponseEntity.ok(cardDto);
     }
 
+    @GetMapping(value = "withdrawal/{cardNumber}/{amount}")
+    @Operation(summary = "withdrawal")
+    public ResponseEntity<BigDecimal> withdrawal(@PathVariable String cardNumber,@PathVariable BigDecimal amount){
+        BigDecimal balance=cardService.withdrawal(cardNumber,amount);
+        return  ResponseEntity.ok(balance);
+    }
+
+    @GetMapping(value = "deposit/{cardNumber}/{amount}")
+    @Operation(summary = "deposit")
+    public ResponseEntity<BigDecimal> deposit(@PathVariable String cardNumber,@PathVariable BigDecimal amount){
+        BigDecimal balance=cardService.deposit(cardNumber,amount);
+        return  ResponseEntity.ok(balance);
+    }
 
 
 

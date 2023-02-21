@@ -17,6 +17,10 @@ import java.sql.Date;
 @Audited
 public class Card extends BaseEntity {
 
+
+    @Column(name = "date")
+    private Date date=getDate();
+
     @NotNull
     @Column(name = "card_number",length = 16)
     private String cardNumber;

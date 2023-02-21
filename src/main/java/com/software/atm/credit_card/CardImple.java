@@ -135,5 +135,32 @@ public class CardImple implements CardService{
         return cardRepository.save(card);
     }
 
+    @Override
+    public BigDecimal withdrawal(String cardNumber, BigDecimal amount) {
+
+        Card card=cardRepository.findByCardNumber(cardNumber);
+        Long accountId=card.getAccount().getId();
+        BigDecimal balance=accountService.withdrawal(accountId,amount);
+        return balance;
+    }
+
+
+    @Override
+    public BigDecimal deposit(String cardNumber, BigDecimal amount) {
+
+        Card card=cardRepository.findByCardNumber(cardNumber);
+        Long accountId=card.getAccount().getId();
+        BigDecimal balance=accountService.deposit(accountId,amount);
+        return balance;
+    }
+
+
+    @Transactional
+    @Override
+    public Card getByCardNumber(String  cardNum) {
+        Card optionalCard=cardRepository.findByCardNumber(cardNum);
+        return optionalCard;
+    }
+
 
 }

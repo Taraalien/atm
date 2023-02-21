@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-21T10:59:16+0330",
+    date = "2023-02-21T13:27:53+0330",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 19.0.1 (Oracle Corporation)"
 )
 @Component
@@ -59,6 +59,7 @@ public class CardMapperImpl implements CardMapper {
         card.setCreatedDate( dto.getCreatedDate() );
         card.setLastModifiedBy( dto.getLastModifiedBy() );
         card.setLastModifiedDate( dto.getLastModifiedDate() );
+        card.setDate( dto.getDate() );
         card.setCardNumber( dto.getCardNumber() );
         card.setPin( dto.getPin() );
         card.setStatus( dto.getStatus() );
@@ -83,6 +84,7 @@ public class CardMapperImpl implements CardMapper {
         cardDto.setCreatedDate( card.getCreatedDate() );
         cardDto.setLastModifiedBy( card.getLastModifiedBy() );
         cardDto.setLastModifiedDate( card.getLastModifiedDate() );
+        cardDto.setDate( card.getDate() );
         cardDto.setCardNumber( card.getCardNumber() );
         cardDto.setPin( card.getPin() );
         cardDto.setStatus( card.getStatus() );

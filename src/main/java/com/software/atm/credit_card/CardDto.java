@@ -10,6 +10,12 @@ import java.sql.Date;
 @Data
 public class CardDto extends BaseDTO {
 
+
+
+    @ApiModelProperty(required = true,hidden = false)
+    private Date date;
+
+
     @ApiModelProperty(required = true,hidden = false)
     private String cardNumber;
 
