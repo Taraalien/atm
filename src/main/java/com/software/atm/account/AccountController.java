@@ -34,7 +34,7 @@ public class AccountController {
     @Operation(summary = "update account")
     public ResponseEntity update(@RequestBody AccountDto dto){
         Account account=accountMapper.toEntity(dto);
-        accountService.save(account);
+        accountService.update(account);
         return ResponseEntity.ok().build();
     }
 

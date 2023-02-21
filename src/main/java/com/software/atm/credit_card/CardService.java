@@ -2,6 +2,8 @@ package com.software.atm.credit_card;
 
 import org.springframework.data.domain.Page;
 
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface CardService {
@@ -17,10 +19,21 @@ public interface CardService {
 
     Card getById(Long id);
 
-
     List<Card> getAll();
 
-    List<Card> getByUser(Long id);
+    List<Card>getByUser(Long id);
+
+    List<Card>getByUserNationalCode(String code);
+    Card getByUserNationalCodeAndAccountNumber(String code,String accountNumber);
+
+    List<Card>getByStatus(Status status);
+
+    BigDecimal getAmount(String s);
+
+    Card changePassword(String cardNumber,String pin);
+
+
+
 
 
 }

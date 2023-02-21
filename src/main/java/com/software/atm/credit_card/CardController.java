@@ -2,6 +2,8 @@ package com.software.atm.credit_card;
 
 
 import com.software.atm.common.PagingData;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -9,7 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
+
+import static com.software.atm.credit_card.Status.ACTIVE;
 
 @RequestMapping("/v1/card")
 @RestController
@@ -78,14 +83,73 @@ public class CardController {
         return ResponseEntity.ok(pagingData);
     }
 
-    @GetMapping("/get-by-user-id/{userId}")
-    @Operation(summary = "get by  user id")
-    public ResponseEntity<List<CardDto>>getByUserId(@PathVariable Long userId)
+
+    @GetMapping("get-by-user/{userId}")
+    @Operation(summary = "get by user")
+    public ResponseEntity<List<CardDto>>getByUser(@PathVariable Long userId)
     {
         List<Card> card=cardService.getByUser(userId);
         List<CardDto>cardDtos=cardMapper.toDto(card);
         return ResponseEntity.ok(cardDtos);
 
     }
+
+
+    @GetMapping("get-by-user-national-code/{code}")
+    @Operation(summary = "get by user national code")
+    public ResponseEntity<List<CardDto>>getByUserNationalCode(@PathVariable String code)
+    {
+        List<Card> card=cardService.getByUserNationalCode(code);
+        List<CardDto>cardDtos=cardMapper.toDto(card);
+        return ResponseEntity.ok(cardDtos);
+
+    }
+
+
+    @GetMapping("get-by-user-national-code-and-accountNumber/{code}/{accountNumber}")
+    @Operation(summary = "get by user national code and account number ")
+    public ResponseEntity<CardDto>getByUserNationalCodeAndAccountNumber(@PathVariable String code, @PathVariable String accountNumber)
+    {
+        Card card=cardService.getByUserNationalCodeAndAccountNumber(code,accountNumber);
+        CardDto cardDtos=cardMapper.toDto(card);
+        return ResponseEntity.ok(cardDtos);
+
+    }
+
+
+    @GetMapping("get-active-card/{status}")
+    @Operation(summary = "get active cards")
+    public ResponseEntity<List<CardDto>>getActiveStatus(@PathVariable Status status)
+    {
+        List<Card> card=cardService.getByStatus(status);
+        List<CardDto> cardDtos=cardMapper.toDto(card);
+        return ResponseEntity.ok(cardDtos);
+
+    }
+
+    @GetMapping("get-amount/{cardNumber}")
+    @Operation(summary = "get amount ")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "not found"),
+            @ApiResponse(code = 200, message = "successfully get balance")
+    })
+    public ResponseEntity<BigDecimal>getAmount(@PathVariable String cardNumber)
+    {
+       BigDecimal balance=cardService.getAmount(cardNumber);
+        return ResponseEntity.ok(balance);
+
+    }
+
+    @PutMapping("change-password/{cardNumber}/{pin}")
+    @Operation(summary = "update pin")
+    public ResponseEntity<CardDto> updatePin(@PathVariable String cardNumber ,String pin){
+        Card card=cardService.changePassword(cardNumber,pin);
+        CardDto cardDto=cardMapper.toDto(card);
+        return ResponseEntity.ok(cardDto);
+    }
+
+
+
+
 
 }

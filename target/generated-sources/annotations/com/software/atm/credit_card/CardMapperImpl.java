@@ -1,5 +1,6 @@
 package com.software.atm.credit_card;
 
+import com.software.atm.account.Account;
 import com.software.atm.user.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-14T16:12:36+0330",
+    date = "2023-02-21T10:59:16+0330",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 19.0.1 (Oracle Corporation)"
 )
 @Component
@@ -51,6 +52,7 @@ public class CardMapperImpl implements CardMapper {
         Card card = new Card();
 
         card.setUser( cardDtoToUser( dto ) );
+        card.setAccount( cardDtoToAccount( dto ) );
         card.setId( dto.getId() );
         card.setVersion( dto.getVersion() );
         card.setCreatedBy( dto.getCreatedBy() );
@@ -74,6 +76,7 @@ public class CardMapperImpl implements CardMapper {
         CardDto cardDto = new CardDto();
 
         cardDto.setUserId( cardUserId( card ) );
+        cardDto.setAccountId( cardAccountId( card ) );
         cardDto.setId( card.getId() );
         cardDto.setVersion( card.getVersion() );
         cardDto.setCreatedBy( card.getCreatedBy() );
@@ -100,6 +103,18 @@ public class CardMapperImpl implements CardMapper {
         return user;
     }
 
+    protected Account cardDtoToAccount(CardDto cardDto) {
+        if ( cardDto == null ) {
+            return null;
+        }
+
+        Account account = new Account();
+
+        account.setId( cardDto.getAccountId() );
+
+        return account;
+    }
+
     private Long cardUserId(Card card) {
         if ( card == null ) {
             return null;
@@ -109,6 +124,21 @@ public class CardMapperImpl implements CardMapper {
             return null;
         }
         Long id = user.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
+    }
+
+    private Long cardAccountId(Card card) {
+        if ( card == null ) {
+            return null;
+        }
+        Account account = card.getAccount();
+        if ( account == null ) {
+            return null;
+        }
+        Long id = account.getId();
         if ( id == null ) {
             return null;
         }

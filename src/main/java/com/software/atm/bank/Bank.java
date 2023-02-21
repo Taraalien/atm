@@ -4,6 +4,7 @@ import com.software.atm.account.Account;
 import com.software.atm.account.AccountDto;
 import com.software.atm.common.BaseEntity;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
@@ -16,7 +17,6 @@ import java.util.List;
 @Entity
 @Audited
 public class Bank extends BaseEntity {
-
 
     @NotNull
     @Column(name = "name")
@@ -34,10 +34,12 @@ public class Bank extends BaseEntity {
     @Column(name = "address")
     private String address;
 
+    @NotNull
+    @Column(name = "active")
+    private Boolean active;
+
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "bank",cascade = CascadeType.ALL)
     private List<Account> accountList;
-
-
 
 
 }

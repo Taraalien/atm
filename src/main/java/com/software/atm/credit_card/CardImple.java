@@ -1,5 +1,7 @@
 package com.software.atm.credit_card;
 
+import com.software.atm.account.Account;
+import com.software.atm.account.AccountService;
 import com.software.atm.common.exceptions.ConflictException;
 import com.software.atm.common.exceptions.NotFound;
 import com.software.atm.user.User;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,16 +25,22 @@ public class CardImple implements CardService{
     private final CardRepository cardRepository;
     private final UserService userService;
 
+    private final AccountService accountService;
+
     @Transactional
     @Override
     public Card save(Card card) {
 
         Long userId=card.getUser().getId();
         User user=userService.getById(userId);
+        card.setUser(user);
+        Long accountId=card.getAccount().getId();
+        Account  account=accountService.getById(accountId);
+        card.setAccount(account);
 
         if(!(card.getPin().length() == 4)){
 
-            throw new ConflictException("pin is not true");
+            throw new ConflictException("pin length should be 4 .");
         }
         var card1=(List<Card>)cardRepository.findAll();
 
@@ -44,7 +53,6 @@ public class CardImple implements CardService{
 
         }
 
-        card.setUser(user);
         return cardRepository.save(card);
     }
 
@@ -95,8 +103,36 @@ public class CardImple implements CardService{
     @Override
     public List<Card> getByUser(Long id) {
         User user=userService.getById(id);
-        List<Card>cards=cardRepository.findByUserId(user.getId());
+        List<Card>cards=cardRepository.findAllByUser(user);
         return cards;
+    }
+
+    @Override
+    public List<Card> getByUserNationalCode(String code){
+        return cardRepository.findAllByUserNationalCode(code);
+    }
+
+    @Override
+    public Card getByUserNationalCodeAndAccountNumber(String code, String accountNumber) {
+        return cardRepository.findAllByUserNationalCodeAndAccount_AccountNumber(code,accountNumber);
+    }
+
+    @Override
+    public List<Card> getByStatus(Status status) {
+        return cardRepository.findAllByStatus(status);
+    }
+
+    @Override
+    public BigDecimal getAmount(String s) {
+        Card card=cardRepository.findByCardNumber(s);
+        return card.getAccount().getBalance();
+    }
+
+    @Override
+    public Card changePassword(String  cardNumber,String pin) {
+        Card  card=cardRepository.findByCardNumber(cardNumber);
+        card.setPin(pin);
+        return cardRepository.save(card);
     }
 
 

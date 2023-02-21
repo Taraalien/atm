@@ -43,6 +43,9 @@ public class Account  extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToOne(mappedBy = "account")
+    private Card  card;
+
 
 
 }

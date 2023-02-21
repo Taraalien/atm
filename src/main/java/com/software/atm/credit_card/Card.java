@@ -38,6 +38,11 @@ public class Card extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id")
+    private Account account;
+
+
 
 
 }

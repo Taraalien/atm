@@ -39,8 +39,7 @@ public class AccountImple implements AccountService{
             }
         }
 
-        if(!(account.getAccountNumber().length()==10 ||
-                account.getAccountNumber().length()==15)){
+        if(!(account.getAccountNumber().length() >= 10 && account.getAccountNumber().length() <= 15)){
 
             throw new ConflictException("account number format not correct.");
 
