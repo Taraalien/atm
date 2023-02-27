@@ -10,11 +10,11 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring",uses = {BankMapper.class, UserMapper.class})
 public interface AccountMapper extends EntityMapper<AccountDto,Account> {
 
-    @Mapping(source = "bankId",target = "bank.id")
+    @Mapping(source = "branchId",target = "branch.id")
     @Mapping(source = "userId",target = "user.id")
     Account toEntity(AccountDto accountDto);
 
-    @Mapping(source = "bank.id",target = "bankId")
+    @Mapping(source = "branch.id",target = "branchId")
     @Mapping(source = "user.id",target = "userId")
     AccountDto toDto(Account account);
 

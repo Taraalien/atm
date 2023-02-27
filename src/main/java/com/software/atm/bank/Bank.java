@@ -2,6 +2,7 @@ package com.software.atm.bank;
 
 import com.software.atm.account.Account;
 import com.software.atm.account.AccountDto;
+import com.software.atm.branch.Branch;
 import com.software.atm.common.BaseEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,9 +23,6 @@ public class Bank extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    @NotNull
-    @Column(name = "code",length = 4)
-    private Long code;
 
     @NotNull
     @Column(name = "phone",length = 11)
@@ -39,7 +37,8 @@ public class Bank extends BaseEntity {
     private Boolean active;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "bank",cascade = CascadeType.ALL)
-    private List<Account> accountList;
+    private List<Branch> branchList;
+
 
 
 }

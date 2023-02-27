@@ -7,6 +7,7 @@ import com.software.atm.common.exceptions.NotFound;
 import com.software.atm.user.User;
 import com.software.atm.user.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -20,6 +21,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class CardImple implements CardService{
 
     private final CardRepository cardRepository;
@@ -40,6 +42,7 @@ public class CardImple implements CardService{
 
         if(!(card.getPin().length() == 4)){
 
+            log.error("pin length should be 4");
             throw new ConflictException("pin length should be 4 .");
         }
         var card1=(List<Card>)cardRepository.findAll();
@@ -48,11 +51,13 @@ public class CardImple implements CardService{
 
             if (card2.getCardNumber().equals(card.getCardNumber())){
 
+                log.error("duplicated card number");
                 throw new ConflictException("duplicated card number");
             }
 
         }
 
+        log.info("save  card");
         return cardRepository.save(card);
     }
 
@@ -67,6 +72,7 @@ public class CardImple implements CardService{
         Long userId=card.getUser().getId();
         User user=userService.getById(userId);
         card1.setUser(user);
+        log.info("update  card");
         return cardRepository.save(card1);
     }
 
@@ -74,6 +80,7 @@ public class CardImple implements CardService{
     @Override
     public void delete(Long id) {
 
+        log.info("delete  card");
         cardRepository.deleteById(id);
 
     }
@@ -81,12 +88,14 @@ public class CardImple implements CardService{
     @Transactional
     @Override
     public Page<Card> paging(Integer page, Integer size) {
+        log.info("get all  card");
         return cardRepository.findAll(PageRequest.of(page,size, Sort.by("id").ascending()));
     }
 
     @Transactional
     @Override
     public Card getById(Long id) {
+        log.info("get by card id");
         Optional<Card>optionalCard=cardRepository.findById(id);
         if(!optionalCard.isPresent()){
             throw new NotFound("id not found");
@@ -100,44 +109,67 @@ public class CardImple implements CardService{
         return (List<Card>) cardRepository.findAll();
     }
 
+    @Transactional
     @Override
     public List<Card> getByUser(Long id) {
+        log.info("get card by user id");
         User user=userService.getById(id);
         List<Card>cards=cardRepository.findAllByUser(user);
         return cards;
     }
 
+    @Transactional
     @Override
     public List<Card> getByUserNationalCode(String code){
+        log.error("this national code did not have card or maybe did not register here");
+        if(cardRepository.existsCardByUser_NationalCode(code)==false){
+
+            throw new  NotFound("this national code did not have card or maybe did not register here");
+        }
         return cardRepository.findAllByUserNationalCode(code);
     }
 
+    @Transactional
     @Override
     public Card getByUserNationalCodeAndAccountNumber(String code, String accountNumber) {
+        log.info("get card by national code and account number");
         return cardRepository.findAllByUserNationalCodeAndAccount_AccountNumber(code,accountNumber);
     }
 
+    @Transactional
     @Override
     public List<Card> getByStatus(Status status) {
+        log.info("get card by status");
         return cardRepository.findAllByStatus(status);
     }
 
+    @Transactional
     @Override
     public BigDecimal getAmount(String s) {
+        log.info("get card amount");
         Card card=cardRepository.findByCardNumber(s);
+
+        if(cardRepository.existsCardByCardNumber(s)==false){
+
+            throw new NotFound("not found card number");
+        }
         return card.getAccount().getBalance();
     }
 
+    @Transactional
     @Override
     public Card changePassword(String  cardNumber,String pin) {
+        log.info("change password");
         Card  card=cardRepository.findByCardNumber(cardNumber);
         card.setPin(pin);
         return cardRepository.save(card);
     }
 
+    @Transactional
     @Override
     public BigDecimal withdrawal(String cardNumber, BigDecimal amount) {
 
+        log.info("withdrawal cash");
         Card card=cardRepository.findByCardNumber(cardNumber);
         Long accountId=card.getAccount().getId();
         BigDecimal balance=accountService.withdrawal(accountId,amount);
@@ -145,9 +177,11 @@ public class CardImple implements CardService{
     }
 
 
+    @Transactional
     @Override
     public BigDecimal deposit(String cardNumber, BigDecimal amount) {
 
+        log.info("deposit cash");
         Card card=cardRepository.findByCardNumber(cardNumber);
         Long accountId=card.getAccount().getId();
         BigDecimal balance=accountService.deposit(accountId,amount);
@@ -158,9 +192,11 @@ public class CardImple implements CardService{
     @Transactional
     @Override
     public Card getByCardNumber(String  cardNum) {
+        log.info("get card by card number");
         Card optionalCard=cardRepository.findByCardNumber(cardNum);
         return optionalCard;
     }
+
 
 
 }

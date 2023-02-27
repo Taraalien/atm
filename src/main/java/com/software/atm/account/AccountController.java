@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.transform.sax.SAXResult;
 import java.util.List;
 
 @RestController
@@ -76,24 +77,9 @@ public class AccountController {
         return ResponseEntity.ok(pagingData);
     }
 
-    @GetMapping("get-by-bank-id/{bankId}")
-    @Operation(summary = "get by id ")
-    public ResponseEntity<List<AccountDto>>getByBankId(@PathVariable Long bankId)
-    {
-        List<Account>  account=accountService.getByBank(bankId);
-        List<AccountDto> accountDto=accountMapper.toDto(account);
-        return ResponseEntity.ok(accountDto);
-    }
 
 
-    @GetMapping("get-by-code/{code}")
-    @Operation(summary = "get by bank code ")
-    public ResponseEntity<List<AccountDto>>getByBankCode(@PathVariable Long code)
-    {
-        List<Account> account=accountService.getByBankCode(code);
-        List<AccountDto> accountDto=accountMapper.toDto(account);
-        return ResponseEntity.ok(accountDto);
-    }
+
 
     @GetMapping("get-by-national-code/{nationalCode}")
     @Operation(summary = "get by bank code ")
@@ -112,7 +98,14 @@ public class AccountController {
         AccountDto accountDto=accountMapper.toDto(account);
         return ResponseEntity.ok(accountDto);
     }
-
+    @GetMapping("get-by-branch-code/{s}")
+    @Operation(summary = "get by branch code")
+    public ResponseEntity<List<AccountDto>>getByBranchCode(@PathVariable String s)
+    {
+        List<Account> accounts=accountService.getByBranchCode(s);
+        List<AccountDto>accountDtos=accountMapper.toDto(accounts);
+        return ResponseEntity.ok(accountDtos);
+    }
 
 
 }

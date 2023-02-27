@@ -2,11 +2,13 @@ package com.software.atm.credit_card;
 
 
 import com.software.atm.user.User;
+import org.hibernate.loader.custom.ScalarReturn;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -23,6 +25,9 @@ public interface CardRepository extends PagingAndSortingRepository<Card,Long> {
     List<Card>findAllByStatus(Status status);
 
     Card findByCardNumber(String number);
+
+    Boolean existsCardByCardNumber(String card);
+    Boolean existsCardByUser_NationalCode(String card);
 
 
 

@@ -48,7 +48,7 @@ public class User extends BaseEntity {
     private String phone;
 
     @NotNull
-    @Column(name = "national_code")
+    @Column(name = "national_code",unique = true)
     @Pattern(regexp = "^[0-9]{10}$")
     private String nationalCode;
 

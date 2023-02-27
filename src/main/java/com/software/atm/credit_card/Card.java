@@ -46,6 +46,12 @@ public class Card extends BaseEntity {
     @JoinColumn(name = "account_id")
     private Account account;
 
+    @Column
+    private String docName;
+
+    @Column
+    @Lob
+    private byte[] file;
 
 
 

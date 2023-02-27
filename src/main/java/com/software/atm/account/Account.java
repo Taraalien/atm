@@ -2,6 +2,7 @@ package com.software.atm.account;
 
 
 import com.software.atm.bank.Bank;
+import com.software.atm.branch.Branch;
 import com.software.atm.common.BaseEntity;
 import com.software.atm.credit_card.Card;
 import com.software.atm.user.User;
@@ -45,6 +46,10 @@ public class Account  extends BaseEntity {
 
     @OneToOne(mappedBy = "account")
     private Card  card;
+
+    @ManyToOne
+    @JoinColumn(name = "branch_id")
+    private Branch branch;
 
 
 

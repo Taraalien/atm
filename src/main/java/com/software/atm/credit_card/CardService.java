@@ -3,7 +3,9 @@ package com.software.atm.credit_card;
 import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
+import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Stream;
 
 public interface CardService {
 
@@ -36,6 +38,7 @@ public interface CardService {
     BigDecimal deposit(String cardNumber, BigDecimal amount);
 
     Card getByCardNumber(String  cardNum);
+
 
 
 

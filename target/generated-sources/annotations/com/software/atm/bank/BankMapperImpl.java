@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-21T13:27:53+0330",
+    date = "2023-02-27T12:47:19+0330",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 19.0.1 (Oracle Corporation)"
 )
 @Component
@@ -56,7 +56,6 @@ public class BankMapperImpl implements BankMapper {
         bank.setLastModifiedBy( dto.getLastModifiedBy() );
         bank.setLastModifiedDate( dto.getLastModifiedDate() );
         bank.setName( dto.getName() );
-        bank.setCode( dto.getCode() );
         bank.setPhone( dto.getPhone() );
         bank.setAddress( dto.getAddress() );
         bank.setActive( dto.getActive() );
@@ -79,7 +78,6 @@ public class BankMapperImpl implements BankMapper {
         bankDto.setLastModifiedBy( bank.getLastModifiedBy() );
         bankDto.setLastModifiedDate( bank.getLastModifiedDate() );
         bankDto.setName( bank.getName() );
-        bankDto.setCode( bank.getCode() );
         bankDto.setPhone( bank.getPhone() );
         bankDto.setAddress( bank.getAddress() );
         bankDto.setActive( bank.getActive() );

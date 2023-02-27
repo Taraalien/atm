@@ -13,9 +13,6 @@ public class BankDto extends BaseDTO {
     private String name;
 
     @ApiModelProperty(required = true,hidden = false)
-    private Long code;
-
-    @ApiModelProperty(required = true,hidden = false)
     private String phone;
 
     @ApiModelProperty(required = true,hidden = false)

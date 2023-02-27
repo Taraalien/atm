@@ -21,11 +21,10 @@ public class AccountDto extends BaseDTO {
     private AccountType accountType;
 
     @ApiModelProperty(required = true,hidden = false)
-    private Long bankId;
-
-    @ApiModelProperty(required = true,hidden = false)
     private Long userId;
 
+    @ApiModelProperty(required = true,hidden = false)
+    private Long branchId;
 
 
 }

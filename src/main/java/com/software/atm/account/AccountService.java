@@ -21,14 +21,13 @@ public interface AccountService  {
 
     List<Account> getAll();
 
-    List<Account>getByBank(Long id);
-
-    List<Account> getByBankCode(Long code);
 
     List<Account> getByUserNationalCode(String s);
     Account getByAccountNumber(String s);
 
     BigDecimal withdrawal(Long accountId,BigDecimal balance);
     BigDecimal deposit(Long accountId, BigDecimal balance);
+
+    List<Account> getByBranchCode(String s);
 
 }

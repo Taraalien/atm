@@ -2,11 +2,14 @@ package com.software.atm.account;
 
 import com.software.atm.bank.Bank;
 import com.software.atm.bank.BankService;
+import com.software.atm.branch.Branch;
+import com.software.atm.branch.BranchService;
 import com.software.atm.common.exceptions.ConflictException;
 import com.software.atm.common.exceptions.NotFound;
 import com.software.atm.user.User;
 import com.software.atm.user.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -20,11 +23,14 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class AccountImple implements AccountService{
 
     private final AccountRepository accountRepository;
-    private final BankService bankService;
     private final UserService userService;
+
+    private final BranchService branchService;
+
 
     @Transactional
     @Override
@@ -36,22 +42,25 @@ public class AccountImple implements AccountService{
 
             if(account2.getAccountNumber().equals(account.getAccountNumber()))
             {
+                log.error("duplicated account number");
                 throw new ConflictException("duplicated account number");
             }
         }
 
         if(!(account.getAccountNumber().length() >= 10 && account.getAccountNumber().length() <= 15)){
 
+            log.error("account format is wrong");
             throw new ConflictException("account number format not correct.");
 
         }
 
-        Long bankId=account.getBank().getId();
-        Bank bank=bankService.getById(bankId);
-        account.setBank(bank);
         Long userId=account.getUser().getId();
         User user=userService.getById(userId);
+        Long branchId=account.getBranch().getId();
+        Branch branch=branchService.getById(branchId);
         account.setUser(user);
+        account.setBranch(branch);
+        log.info("save new account");
         return accountRepository.save(account);
     }
 
@@ -62,12 +71,13 @@ public class AccountImple implements AccountService{
         account1.setBalance(account.getBalance());
         account1.setAccountType(account.getAccountType());
         account1.setAccountNumber(account.getAccountNumber());
-        Long bankId=account.getBank().getId();
-        Bank bank=bankService.getById(bankId);
         Long userId=account.getUser().getId();
         User user=userService.getById(userId);
+        Long branchId=account.getBranch().getId();
+        Branch branch=branchService.getById(branchId);
         account1.setUser(user);
-        account1.setBank(bank);
+        account1.setBranch(branch);
+        log.info("update account");
         return accountRepository.save(account1);
     }
 
@@ -75,18 +85,21 @@ public class AccountImple implements AccountService{
     @Override
     public void delete(Long id) {
 
+        log.info("delete account");
         accountRepository.deleteById(id);
     }
 
     @Transactional
     @Override
     public Page<Account> paging(Integer page, Integer size) {
+        log.info("find all  accounts");
         return accountRepository.findAll(PageRequest.of(page,size, Sort.by("id").ascending()));
     }
 
     @Transactional
     @Override
     public Account getById(Long id) {
+        log.info("get account by id");
         Optional<Account>account=accountRepository.findById(id);
         if(!account.isPresent()){
             throw new NotFound("not found id");
@@ -100,32 +113,25 @@ public class AccountImple implements AccountService{
         return (List<Account>) accountRepository.findAll();
     }
 
-    @Transactional
-    @Override
-    public List<Account> getByBank(Long id) {
-        Bank bank=bankService.getById(id);
-         List<Account>accounts=accountRepository.findAllByBank(bank);
-        return accounts;
-    }
 
-    @Transactional
-    @Override
-    public List<Account> getByBankCode(Long code) {
-        return accountRepository.findByBankCode(code);
-    }
     @Transactional
     @Override
     public List<Account> getByUserNationalCode(String s) {
+        log.info("get account by user national code");
         return accountRepository.findByUserNationalCode(s);
     }
 
+    @Transactional
     @Override
     public Account getByAccountNumber(String s) {
+        log.info("get account by account number ");
         return accountRepository.findByAccountNumber(s);
     }
 
+    @Transactional
     @Override
     public BigDecimal withdrawal(Long accountId, BigDecimal balance) {
+        log.info("withdrawal money");
         Account account=getById(accountId);
         if(account.getBalance().compareTo(balance)==-1){
 
@@ -137,16 +143,22 @@ public class AccountImple implements AccountService{
         return newBalance.getBalance();
     }
 
-
+    @Transactional
     @Override
     public BigDecimal deposit(Long accountId, BigDecimal balance) {
 
+        log.info("deposit money");
         Account account=getById(accountId);
 
         account.setBalance(account.getBalance().add(balance));
 
         Account newBalance=accountRepository.save(account);
         return newBalance.getBalance();
+    }
+
+    @Override
+    public List<Account> getByBranchCode(String s) {
+        return accountRepository.findByBranch_Code(s);
     }
 
 

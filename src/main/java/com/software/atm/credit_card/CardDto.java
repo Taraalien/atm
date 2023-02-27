@@ -16,6 +16,7 @@ public class CardDto extends BaseDTO {
     private Date date;
 
 
+
     @ApiModelProperty(required = true,hidden = false)
     private String cardNumber;
 

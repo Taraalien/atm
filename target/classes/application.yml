@@ -14,3 +14,7 @@ spring:
       enabled : false
 
 
+logging:
+  file:
+    path: ./
+    name: logfile.log

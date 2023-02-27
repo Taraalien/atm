@@ -1,6 +1,6 @@
 package com.software.atm.account;
 
-import com.software.atm.bank.Bank;
+import com.software.atm.branch.Branch;
 import com.software.atm.user.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-21T13:27:53+0330",
+    date = "2023-02-27T12:47:19+0330",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 19.0.1 (Oracle Corporation)"
 )
 @Component
@@ -51,7 +51,7 @@ public class AccountMapperImpl implements AccountMapper {
 
         Account account = new Account();
 
-        account.setBank( accountDtoToBank( accountDto ) );
+        account.setBranch( accountDtoToBranch( accountDto ) );
         account.setUser( accountDtoToUser( accountDto ) );
         account.setId( accountDto.getId() );
         account.setVersion( accountDto.getVersion() );
@@ -74,7 +74,7 @@ public class AccountMapperImpl implements AccountMapper {
 
         AccountDto accountDto = new AccountDto();
 
-        accountDto.setBankId( accountBankId( account ) );
+        accountDto.setBranchId( accountBranchId( account ) );
         accountDto.setUserId( accountUserId( account ) );
         accountDto.setId( account.getId() );
         accountDto.setVersion( account.getVersion() );
@@ -89,16 +89,16 @@ public class AccountMapperImpl implements AccountMapper {
         return accountDto;
     }
 
-    protected Bank accountDtoToBank(AccountDto accountDto) {
+    protected Branch accountDtoToBranch(AccountDto accountDto) {
         if ( accountDto == null ) {
             return null;
         }
 
-        Bank bank = new Bank();
+        Branch branch = new Branch();
 
-        bank.setId( accountDto.getBankId() );
+        branch.setId( accountDto.getBranchId() );
 
-        return bank;
+        return branch;
     }
 
     protected User accountDtoToUser(AccountDto accountDto) {
@@ -113,15 +113,15 @@ public class AccountMapperImpl implements AccountMapper {
         return user;
     }
 
-    private Long accountBankId(Account account) {
+    private Long accountBranchId(Account account) {
         if ( account == null ) {
             return null;
         }
-        Bank bank = account.getBank();
-        if ( bank == null ) {
+        Branch branch = account.getBranch();
+        if ( branch == null ) {
             return null;
         }
-        Long id = bank.getId();
+        Long id = branch.getId();
         if ( id == null ) {
             return null;
         }
