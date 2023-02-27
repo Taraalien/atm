@@ -1,26 +1,24 @@
 package com.software.atm.credit_card;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.software.atm.common.PagingData;
+import com.software.atm.tools.ExcelExport;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.math.BigDecimal;
-import java.net.URLConnection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RequestMapping("/v1/card")
@@ -164,9 +162,24 @@ public class CardController {
         return ResponseEntity.ok(balance);
     }
 
+    @GetMapping("/records/export/excel")
+    @Operation(summary = "export excel")
+    public void exportIntoExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
 
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=records_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
 
+        List<Card> listOfRecords = cardService.getAll();
+
+        ExcelExport.ExcelGenerator generator = new ExcelExport.ExcelGenerator(listOfRecords);
+
+        generator.generate(response);
     }
+}
 
 
 

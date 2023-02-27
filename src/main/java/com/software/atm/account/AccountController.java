@@ -4,17 +4,18 @@ package com.software.atm.account;
 import com.software.atm.common.PagingData;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.transform.sax.SAXResult;
 import java.util.List;
 
 @RestController
 @RequestMapping("/v1/account")
 @AllArgsConstructor
+@Slf4j
 public class AccountController {
 
 
@@ -26,6 +27,7 @@ public class AccountController {
     @PostMapping
     @Operation(summary = "insert account")
     public ResponseEntity save(@RequestBody AccountDto dto){
+
         Account account=accountMapper.toEntity(dto);
         accountService.save(account);
         return ResponseEntity.status(HttpStatus.CREATED).build();
