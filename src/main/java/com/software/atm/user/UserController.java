@@ -7,8 +7,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,7 +25,7 @@ public class UserController {
 
     @PostMapping
     @Operation(summary = "create user")
-    public ResponseEntity save(@RequestBody UserDto dto) {
+    public ResponseEntity save(@Valid @RequestBody  UserDto dto) {
         User user = userMapper.toEntity(dto);
         userService.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -34,7 +36,7 @@ public class UserController {
     public ResponseEntity update(@RequestBody UserDto dto) {
         User user = userMapper.toEntity(dto);
         userService.update(user);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(user);
     }
 
 

@@ -26,7 +26,7 @@ public class UserDto extends BaseDTO {
     private String phone;
 
     @ApiModelProperty(required = true,hidden = false)
-    @Pattern(regexp = "^[0-9]{10}$")
+    @Pattern(regexp = "^[0-9]{10}$",message ="valid national code" )
     private String nationalCode;
 
     @ApiModelProperty(required = true,hidden = false)

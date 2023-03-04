@@ -39,17 +39,17 @@ public class UserImpl implements UserService {
 
        }
 
-        if(!user.getNationalCode().matches("^[0-9]{10}$")){
-
-            log.error("national code is not valid");
-            throw new ConflictException("national code is not valid");
-        }
-
-        if (!user.getPhone().matches("^[0-9]{11}$")){
-
-            log.error("phone number is not valid");
-            throw new ConflictException("phone number is not valid");
-        }
+//        if(!user.getNationalCode().matches("^[0-9]{10}$")){
+//
+//            log.error("national code is not valid");
+//            throw new ConflictException("national code is not valid");
+//        }
+//
+//        if (!user.getPhone().matches("^[0-9]{11}$")){
+//
+//            log.error("phone number is not valid");
+//            throw new ConflictException("phone number is not valid");
+//        }
 
         log.info("save user");
         return repo.save(user);

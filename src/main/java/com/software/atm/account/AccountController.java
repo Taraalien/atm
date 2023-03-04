@@ -38,7 +38,7 @@ public class AccountController {
     public ResponseEntity update(@RequestBody AccountDto dto){
         Account account=accountMapper.toEntity(dto);
         accountService.update(account);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(account);
     }
 
     @GetMapping()

@@ -38,7 +38,7 @@ public class BranchController {
     public ResponseEntity update(@RequestBody BranchDto dto){
         Branch branch=branchMapper.toEntity(dto);
         branchService.save(branch);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(branch);
     }
 
     @GetMapping()

@@ -43,13 +43,12 @@ public class User extends BaseEntity {
 
     @NotNull
     @Column(name = "phone")
-    //^start with string between 0 to 9 10 times  $ end of string
     @Pattern(regexp = "^[0-9]{10}$",message = "valid phone number")
     private String phone;
 
     @NotNull
     @Column(name = "national_code",unique = true)
-    @Pattern(regexp = "^[0-9]{10}$")
+    @Pattern(regexp = "^[0-9]{10}$",message ="valid national code" )
     private String nationalCode;
 
     @NotNull

@@ -34,7 +34,7 @@ public class BankController {
     public ResponseEntity update(@RequestBody BankDto dto){
         Bank bank=bankMapper.toEntity(dto);
         bankService.save(bank);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(bank);
     }
 
     @GetMapping()
