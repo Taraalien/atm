@@ -46,7 +46,10 @@ public class BranchImple implements BranchService {
     @Override
     public void delete(Long id) {
 
-        branchRepository.deleteById(id);
+        if(branchRepository.findById(id).equals(true)) {
+            branchRepository.deleteById(id);
+        }
+        throw new NotFound("not found id");
     }
 
     @Override

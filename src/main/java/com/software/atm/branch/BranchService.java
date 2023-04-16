@@ -1,7 +1,6 @@
 package com.software.atm.branch;
 
 
-import com.software.atm.bank.Bank;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

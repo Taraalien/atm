@@ -1,6 +1,7 @@
 package com.software.atm.user;
 
 
+import com.software.atm.common.exceptions.BadRequest;
 import com.software.atm.common.exceptions.ConflictException;
 import com.software.atm.common.exceptions.NotFound;
 import lombok.AllArgsConstructor;
@@ -34,22 +35,22 @@ public class UserImpl implements UserService {
             if(user2.getPhone().equals(user.getPhone()))
             {
                 log.error("duplicated phone number");
-                throw new ConflictException("duplicated phone number");
+                throw new BadRequest("duplicated phone number");
             }
 
        }
 
-//        if(!user.getNationalCode().matches("^[0-9]{10}$")){
-//
-//            log.error("national code is not valid");
-//            throw new ConflictException("national code is not valid");
-//        }
-//
-//        if (!user.getPhone().matches("^[0-9]{11}$")){
-//
-//            log.error("phone number is not valid");
-//            throw new ConflictException("phone number is not valid");
-//        }
+        if(!user.getNationalCode().matches("^[0-9]{10}$")){
+
+            log.error("national code is not valid");
+            throw new BadRequest("invalid National Code");
+        }
+
+        if (!user.getPhone().matches("^[0-9]{11}$")){
+
+            log.error("phone number is not valid");
+            throw new BadRequest("invalid phone number");
+        }
 
         log.info("save user");
         return repo.save(user);
@@ -64,13 +65,13 @@ public class UserImpl implements UserService {
         if(!user1.getNationalCode().matches("^[0-9]{10}$")){
 
             log.error("national code is not valid");
-            throw new ConflictException("national code is not valid");
+            throw new BadRequest("invalid National Code");
         }
 
         if (!user1.getPhone().matches("^[0-9]{11}$")){
 
             log.error("national code is not valid");
-            throw new ConflictException("phone number is not valid");
+            throw new BadRequest("invalid phone number");
         }
         user1.setName(user.getName());
         user1.setLastName(user.getLastName());
@@ -88,7 +89,11 @@ public class UserImpl implements UserService {
     @Override
     public void delete(Long id) {
         log.info("delete user");
-        repo.deleteById(id);
+        if (repo.findById(id).equals(true))
+            {
+                repo.deleteById(id);
+            }else
+                throw new NotFound("not found id");
 
     }
 
@@ -104,7 +109,7 @@ public class UserImpl implements UserService {
     @Override
     public Page<User> paging(Integer page, Integer size) {
         log.info("get all user");
-        return  repo.findAll(PageRequest.of(page,size,Sort.by("id").ascending()));
+        return  repo.findAll(PageRequest.of(page,size,Sort.by("birthDay").descending()));
     }
 
     @Transactional

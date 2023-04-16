@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8070
 
 spring:
   datasource:
@@ -12,6 +12,8 @@ spring:
     generate-ddl: true
     liquibase :
       enabled : false
+  messages:
+    basename: messages
 
 
 logging:

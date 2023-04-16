@@ -2,6 +2,7 @@ package com.software.atm.credit_card;
 
 import com.software.atm.account.Account;
 import com.software.atm.account.AccountService;
+import com.software.atm.common.exceptions.BadRequest;
 import com.software.atm.common.exceptions.ConflictException;
 import com.software.atm.common.exceptions.NotFound;
 import com.software.atm.user.User;
@@ -43,7 +44,7 @@ public class CardImple implements CardService{
         if(!(card.getPin().length() == 4)){
 
             log.error("pin length should be 4");
-            throw new ConflictException("pin length should be 4 .");
+            throw new BadRequest("pin length should be 4 .");
         }
         var card1=(List<Card>)cardRepository.findAll();
 
@@ -52,7 +53,7 @@ public class CardImple implements CardService{
             if (card2.getCardNumber().equals(card.getCardNumber())){
 
                 log.error("duplicated card number");
-                throw new ConflictException("duplicated card number");
+                throw new BadRequest("duplicated card number");
             }
 
         }
@@ -81,7 +82,10 @@ public class CardImple implements CardService{
     public void delete(Long id) {
 
         log.info("delete  card");
-        cardRepository.deleteById(id);
+        if(cardRepository.findById(id).equals(true)) {
+            cardRepository.deleteById(id);
+        }
+        throw new NotFound("not found id");
 
     }
 

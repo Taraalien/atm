@@ -7,13 +7,10 @@ import com.software.atm.common.BaseEntity;
 import com.software.atm.credit_card.Card;
 import com.software.atm.user.User;
 import lombok.Data;
-import org.checkerframework.checker.index.qual.LengthOf;
-import org.checkerframework.checker.units.qual.Length;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 @Entity
@@ -50,7 +47,6 @@ public class Account  extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "branch_id")
     private Branch branch;
-
 
 
 }

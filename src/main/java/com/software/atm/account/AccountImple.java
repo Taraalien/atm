@@ -4,6 +4,7 @@ import com.software.atm.bank.Bank;
 import com.software.atm.bank.BankService;
 import com.software.atm.branch.Branch;
 import com.software.atm.branch.BranchService;
+import com.software.atm.common.exceptions.BadRequest;
 import com.software.atm.common.exceptions.ConflictException;
 import com.software.atm.common.exceptions.NotFound;
 import com.software.atm.user.User;
@@ -86,7 +87,10 @@ public class AccountImple implements AccountService{
     public void delete(Long id) {
 
         log.info("delete account");
-        accountRepository.deleteById(id);
+        if(accountRepository.findById(id).equals(true)) {
+            accountRepository.deleteById(id);
+        }
+        throw new NotFound("not found id");
     }
 
     @Transactional
@@ -135,7 +139,7 @@ public class AccountImple implements AccountService{
         Account account=getById(accountId);
         if(account.getBalance().compareTo(balance)==-1){
 
-            throw new ConflictException("amount you want is more than your balance");
+            throw new BadRequest("amount you want is more than your balance");
         }
         account.setBalance(account.getBalance().subtract(balance));
 

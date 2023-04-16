@@ -3,10 +3,7 @@ package com.software.atm.user;
 import com.software.atm.account.Account;
 import com.software.atm.common.BaseEntity;
 import com.software.atm.credit_card.Card;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
@@ -41,7 +38,7 @@ public class User extends BaseEntity {
     private Date birthDay;
 
 
-    @NotNull
+    @NotNull(message = "{phone.noempty}")
     @Column(name = "phone")
     @Pattern(regexp = "^[0-9]{10}$",message = "valid phone number")
     private String phone;
@@ -68,7 +65,6 @@ public class User extends BaseEntity {
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL)
     private List<Card> cards;
-
 
 
 }

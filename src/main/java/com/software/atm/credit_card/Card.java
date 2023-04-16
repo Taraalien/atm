@@ -49,10 +49,6 @@ public class Card extends BaseEntity {
     @Column
     private String docName;
 
-    @Column
-    @Lob
-    private byte[] file;
-
 
 
 }

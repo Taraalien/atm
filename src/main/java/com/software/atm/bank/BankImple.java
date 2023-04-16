@@ -43,14 +43,17 @@ public class BankImple implements BankService {
     public void delete(Long id) {
 
         log.info("delete  bank");
-        bankRepository.deleteById(id);
+        if(bankRepository.findById(id).equals(true)) {
+            bankRepository.deleteById(id);
+        }
+        throw new NotFound("not found id");
     }
 
     @Transactional
     @Override
     public Page<Bank> paging(Integer page, Integer size) {
         log.info("get all  banks");
-        return bankRepository.findAll(PageRequest.of(page,size, Sort.by("id").ascending()));
+        return bankRepository.findAll(PageRequest.of(page,size, Sort.by("name").ascending()));
     }
 
     @Transactional
