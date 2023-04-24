@@ -20,17 +20,14 @@ com\software\atm\common\PagingData.class
 com\software\atm\account\Account.class
 com\software\atm\bank\BankMapper.class
 com\software\atm\branch\BranchRepository.class
-com\software\atm\account\AccountMapperImpl.class
 com\software\atm\credit_card\CardRepository.class
 com\software\atm\common\exceptions\ErrDetails.class
-com\software\atm\bank\BankMapperImpl.class
 com\software\atm\user\User.class
 com\software\atm\common\exceptions\ApiError$ApiValidationError.class
 com\software\atm\account\AccountType.class
 com\software\atm\common\EntityMapper.class
 com\software\atm\branch\Branch.class
 com\software\atm\user\UserImpl.class
-com\software\atm\user\UserMapperImpl.class
 com\software\atm\bank\BankService.class
 com\software\atm\credit_card\CardController.class
 com\software\atm\common\exceptions\BadRequest.class
@@ -41,7 +38,6 @@ com\software\atm\user\UserController.class
 com\software\atm\credit_card\Status.class
 com\software\atm\StartApplication.class
 com\software\atm\account\AccountImple.class
-com\software\atm\credit_card\CardMapperImpl.class
 com\software\atm\tools\ExcelExport$ExcelGenerator.class
 com\software\atm\common\exceptions\RestExceptionHandler.class
 com\software\atm\credit_card\CardService.class
@@ -53,7 +49,6 @@ com\software\atm\bank\BankImple.class
 com\software\atm\common\exceptions\ApiError$ApiSubError.class
 com\software\atm\bank\BankRepository.class
 com\software\atm\account\AccountController.class
-com\software\atm\branch\BranchMapperImpl.class
 com\software\atm\credit_card\CardDto.class
 com\software\atm\common\exceptions\LowerCaseClassNameResolver.class
 com\software\atm\account\AccountRepository.class

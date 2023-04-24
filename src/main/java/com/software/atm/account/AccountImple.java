@@ -1,7 +1,5 @@
 package com.software.atm.account;
 
-import com.software.atm.bank.Bank;
-import com.software.atm.bank.BankService;
 import com.software.atm.branch.Branch;
 import com.software.atm.branch.BranchService;
 import com.software.atm.common.exceptions.BadRequest;

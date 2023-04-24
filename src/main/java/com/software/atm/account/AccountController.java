@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/account")
 @AllArgsConstructor
-@Slf4j
 public class AccountController {
 
 
