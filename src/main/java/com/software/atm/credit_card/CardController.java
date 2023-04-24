@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.*;
 import java.math.BigDecimal;
 import java.text.DateFormat;
@@ -34,7 +35,7 @@ public class CardController {
 
     @PostMapping
     @Operation(summary = "insert card")
-    public ResponseEntity save(@RequestBody CardDto dto) {
+    public ResponseEntity save(@RequestBody @Valid CardDto dto) {
         Card card = cardMapper.toEntity(dto);
         cardService.save(card);
         return ResponseEntity.status(HttpStatus.CREATED).build();

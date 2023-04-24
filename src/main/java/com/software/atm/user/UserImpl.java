@@ -120,6 +120,7 @@ public class UserImpl implements UserService {
         if(!user.isPresent()){
             throw new NotFound("Not found id");
         }
+
         return user.get();
     }
 

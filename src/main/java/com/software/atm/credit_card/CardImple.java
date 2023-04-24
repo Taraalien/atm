@@ -41,22 +41,22 @@ public class CardImple implements CardService{
         Account  account=accountService.getById(accountId);
         card.setAccount(account);
 
-        if(!(card.getPin().length() == 4)){
-
-            log.error("pin length should be 4");
-            throw new BadRequest("pin length should be 4 .");
-        }
-        var card1=(List<Card>)cardRepository.findAll();
-
-        for(Card card2 : card1){
-
-            if (card2.getCardNumber().equals(card.getCardNumber())){
-
-                log.error("duplicated card number");
-                throw new BadRequest("duplicated card number");
-            }
-
-        }
+//        if(!(card.getPin().length() == 4)){
+//
+//            log.error("pin length should be 4");
+//            throw new BadRequest("pin length should be 4 .");
+//        }
+//        var card1=(List<Card>)cardRepository.findAll();
+//
+//        for(Card card2 : card1){
+//
+//            if (card2.getCardNumber().equals(card.getCardNumber())){
+//
+//                log.error("duplicated card number");
+//                throw new BadRequest("duplicated card number");
+//            }
+//
+//        }
 
         log.info("save  card");
         return cardRepository.save(card);

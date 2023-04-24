@@ -95,10 +95,10 @@ public class AccountImple implements AccountService{
     @Override
     public Page<Account> paging(Integer page, Integer size) {
         log.info("find all  accounts");
-        return accountRepository.findAll(PageRequest.of(page,size, Sort.by("id").ascending()));
+        return accountRepository.findAll(PageRequest.of(page,size, Sort.by("name").ascending()));
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public Account getById(Long id) {
         log.info("get account by id");
@@ -109,28 +109,28 @@ public class AccountImple implements AccountService{
         return account.get();
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public List<Account> getAll() {
         return (List<Account>) accountRepository.findAll();
     }
 
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public List<Account> getByUserNationalCode(String s) {
         log.info("get account by user national code");
         return accountRepository.findByUserNationalCode(s);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public Account getByAccountNumber(String s) {
         log.info("get account by account number ");
         return accountRepository.findByAccountNumber(s);
     }
 
-    @Transactional
+    @Transactional()
     @Override
     public BigDecimal withdrawal(Long accountId, BigDecimal balance) {
         log.info("withdrawal money");
@@ -145,7 +145,7 @@ public class AccountImple implements AccountService{
         return newBalance.getBalance();
     }
 
-    @Transactional
+    @Transactional()
     @Override
     public BigDecimal deposit(Long accountId, BigDecimal balance) {
 
@@ -162,6 +162,5 @@ public class AccountImple implements AccountService{
     public List<Account> getByBranchCode(String s) {
         return accountRepository.findByBranch_Code(s);
     }
-
 
 }

@@ -20,11 +20,5 @@ public class StartApplication {
         SpringApplication.run(StartApplication.class,args);
     }
 
-    @Bean
-    public MessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:messages");
-        messageSource.setCacheSeconds(10); //reload messages every 10 seconds
-        return messageSource;
-    }
+
 }

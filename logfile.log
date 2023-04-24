@@ -236,3 +236,95 @@ Consider defining a bean of type 'com.software.atm.account.AccountMapper' in you
 2023-04-24 11:43:08.387  INFO 4108 --- [RMI TCP Connection(2)-192.168.56.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2023-04-24 11:43:08.389  INFO 4108 --- [RMI TCP Connection(2)-192.168.56.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2023-04-24 11:43:38.264  INFO 4108 --- [http-nio-8070-exec-10] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 295 ms
+2023-04-24 13:39:53.732  INFO 4108 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-24 13:39:53.747  INFO 4108 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-04-24 13:39:53.754  INFO 4108 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-04-24 13:39:58.144  INFO 13820 --- [main] com.software.atm.StartApplication        : Starting StartApplication using Java 19.0.1 on ws40108416 with PID 13820 (E:\projects\springboot\projects\atm\target\classes started by t.bahmani in E:\projects\springboot\projects\atm)
+2023-04-24 13:39:58.146  INFO 13820 --- [main] com.software.atm.StartApplication        : No active profile set, falling back to 1 default profile: "default"
+2023-04-24 13:39:59.021  INFO 13820 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-24 13:39:59.152  INFO 13820 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 124 ms. Found 5 JPA repository interfaces.
+2023-04-24 13:39:59.527  INFO 13820 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8070 (http)
+2023-04-24 13:39:59.534  INFO 13820 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-24 13:39:59.534  INFO 13820 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2023-04-24 13:39:59.657  INFO 13820 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-24 13:39:59.658  INFO 13820 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1474 ms
+2023-04-24 13:39:59.903  INFO 13820 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-24 13:39:59.958  INFO 13820 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.9.Final
+2023-04-24 13:40:00.083  INFO 13820 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-24 13:40:00.162  INFO 13820 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-24 13:40:00.166  WARN 13820 --- [main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-04-24 13:40:00.378  INFO 13820 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-24 13:40:00.401  INFO 13820 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-04-24 13:40:00.429  INFO 13820 --- [main] o.h.e.boot.internal.EnversServiceImpl    : Envers integration enabled? : true
+2023-04-24 13:40:01.565  INFO 13820 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-24 13:40:01.572  INFO 13820 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-24 13:40:02.016  WARN 13820 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-24 13:40:02.593  WARN 13820 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2023-04-24 13:40:03.097  INFO 13820 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-04-24 13:40:03.128  INFO 13820 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8070 (http) with context path ''
+2023-04-24 13:40:03.141  INFO 13820 --- [main] com.software.atm.StartApplication        : Started StartApplication in 5.307 seconds (JVM running for 5.819)
+2023-04-24 13:40:03.526  INFO 13820 --- [RMI TCP Connection(1)-192.168.56.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-24 13:40:03.526  INFO 13820 --- [RMI TCP Connection(1)-192.168.56.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-04-24 13:40:03.528  INFO 13820 --- [RMI TCP Connection(1)-192.168.56.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-04-24 13:40:07.707  INFO 13820 --- [http-nio-8070-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 286 ms
+2023-04-24 13:49:57.414  INFO 13820 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-24 13:49:57.416  INFO 13820 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-04-24 13:49:57.424  INFO 13820 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-04-24 13:50:01.821  INFO 9908 --- [main] com.software.atm.StartApplication        : Starting StartApplication using Java 19.0.1 on ws40108416 with PID 9908 (E:\projects\springboot\projects\atm\target\classes started by t.bahmani in E:\projects\springboot\projects\atm)
+2023-04-24 13:50:01.824  INFO 9908 --- [main] com.software.atm.StartApplication        : No active profile set, falling back to 1 default profile: "default"
+2023-04-24 13:50:02.628  INFO 9908 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-24 13:50:02.747  INFO 9908 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 114 ms. Found 5 JPA repository interfaces.
+2023-04-24 13:50:03.110  INFO 9908 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8070 (http)
+2023-04-24 13:50:03.117  INFO 9908 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-24 13:50:03.117  INFO 9908 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2023-04-24 13:50:03.241  INFO 9908 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-24 13:50:03.242  INFO 9908 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1380 ms
+2023-04-24 13:50:03.478  INFO 9908 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-24 13:50:03.531  INFO 9908 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.9.Final
+2023-04-24 13:50:03.658  INFO 9908 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-24 13:50:03.739  INFO 9908 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-24 13:50:03.743  WARN 9908 --- [main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-04-24 13:50:03.956  INFO 9908 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-24 13:50:03.980  INFO 9908 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-04-24 13:50:04.007  INFO 9908 --- [main] o.h.e.boot.internal.EnversServiceImpl    : Envers integration enabled? : true
+2023-04-24 13:50:05.049  INFO 9908 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-24 13:50:05.056  INFO 9908 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-24 13:50:05.502  WARN 9908 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-24 13:50:06.057  WARN 9908 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2023-04-24 13:50:06.553  INFO 9908 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-04-24 13:50:06.583  INFO 9908 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8070 (http) with context path ''
+2023-04-24 13:50:06.596  INFO 9908 --- [main] com.software.atm.StartApplication        : Started StartApplication in 5.082 seconds (JVM running for 5.598)
+2023-04-24 13:50:06.711  INFO 9908 --- [RMI TCP Connection(1)-192.168.56.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-24 13:50:06.717  INFO 9908 --- [RMI TCP Connection(1)-192.168.56.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-04-24 13:50:06.718  INFO 9908 --- [RMI TCP Connection(1)-192.168.56.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-04-24 13:50:19.443  INFO 9908 --- [http-nio-8070-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 293 ms
+2023-04-24 13:52:15.637  INFO 9908 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-24 13:52:15.639  INFO 9908 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-04-24 13:52:15.645  INFO 9908 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-04-24 13:52:18.206  INFO 3616 --- [main] com.software.atm.StartApplication        : Starting StartApplication using Java 19.0.1 on ws40108416 with PID 3616 (E:\projects\springboot\projects\atm\target\classes started by t.bahmani in E:\projects\springboot\projects\atm)
+2023-04-24 13:52:18.208  INFO 3616 --- [main] com.software.atm.StartApplication        : No active profile set, falling back to 1 default profile: "default"
+2023-04-24 13:52:19.018  INFO 3616 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-24 13:52:19.148  INFO 3616 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 125 ms. Found 5 JPA repository interfaces.
+2023-04-24 13:52:19.532  INFO 3616 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8070 (http)
+2023-04-24 13:52:19.539  INFO 3616 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-24 13:52:19.539  INFO 3616 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2023-04-24 13:52:19.658  INFO 3616 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-24 13:52:19.659  INFO 3616 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1413 ms
+2023-04-24 13:52:19.893  INFO 3616 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-24 13:52:19.944  INFO 3616 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.9.Final
+2023-04-24 13:52:20.067  INFO 3616 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-24 13:52:20.144  INFO 3616 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-24 13:52:20.147  WARN 3616 --- [main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-04-24 13:52:20.358  INFO 3616 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-24 13:52:20.382  INFO 3616 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-04-24 13:52:20.409  INFO 3616 --- [main] o.h.e.boot.internal.EnversServiceImpl    : Envers integration enabled? : true
+2023-04-24 13:52:21.463  INFO 3616 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-24 13:52:21.470  INFO 3616 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-24 13:52:21.923  WARN 3616 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-24 13:52:22.486  WARN 3616 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2023-04-24 13:52:22.988  INFO 3616 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-04-24 13:52:23.019  INFO 3616 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8070 (http) with context path ''
+2023-04-24 13:52:23.032  INFO 3616 --- [main] com.software.atm.StartApplication        : Started StartApplication in 5.133 seconds (JVM running for 5.661)
+2023-04-24 13:52:23.350  INFO 3616 --- [RMI TCP Connection(5)-192.168.56.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-24 13:52:23.350  INFO 3616 --- [RMI TCP Connection(5)-192.168.56.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-04-24 13:52:23.352  INFO 3616 --- [RMI TCP Connection(5)-192.168.56.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
